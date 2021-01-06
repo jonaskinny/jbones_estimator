@@ -1,0 +1,233 @@
+﻿<project name="jbones_estimator" default="builditDebug" basedir=".">
+	<property file="${ant.project.name}_build.properties" />
+	<description>jbones_estimator build file</description>
+   <!--Set up classpath-->
+	<path id="project.class.path">
+		<fileset dir="${appLibDir}">
+		  <include name="*.*" />
+      </fileset>
+      <pathelement path="${buildDir}" />
+   </path>
+   <!--Build the default javadocs-->
+   <target name="doc" depends="cleanDoc, createDocDir" description="generate javadocs">
+   <javadoc
+      sourcePath="${javaSrcDir}"
+      destdir="${javaDocDir}"
+      classpath= "project.class.path"
+      packagenames="${projectPackages}"/>
+</target>
+<!--Build the private javadocs-->
+<target name="docprivate" depends="cleanDoc, createDocDir" description="generate javadocs">
+   <javadoc
+      private = "true"
+      sourcePath="${javaSrcDir}"
+      destdir="${javaDocDir}"
+      classpath= "project.class.path"
+      packagenames="${projectPackages}"/>
+</target>
+<!--Clean up all the created files-->
+	<target name="cleanDoc" description="clean javadocs">
+		<delete dir="${javaDocDir}" />
+	</target>
+	<!--Create javadoc directory-->
+	<target name="createDocDir" >
+		<mkdir dir="${javaDocDir}" />
+    </target>
+	<!--Create all the build directories-->
+	<target name="createBuildArea" >
+		<mkdir dir="${buildDir}" />
+      <mkdir dir="${buildDir}/test" />
+    </target>
+
+<!--Copy the files to build area-->
+	<target name="copyFilesToBuildArea" depends="createBuildArea" >
+      <copy todir="${buildDir}/META-INF">
+			<fileset dir="${METAINFDir}">
+            <exclude name="**/*.db"/>
+         </fileset>
+		</copy>
+   </target>
+<!--Copy the config jars to lib-->
+	<target name="copyConfigJarsToLib" >
+      <copy todir="${appLibDir">
+			<fileset dir="${deployDir}">
+			   <include name="${ant.project.name}-config.jar"/>
+            <exclude name="**/*.db"/>
+         </fileset>
+		</copy>
+   </target>
+<!--Compile the java source files-->
+	<target name="compile" depends="createBuildArea">
+		<javac srcdir="${javaSrcDir}" destdir="${buildDir}">
+			<classpath refid="project.class.path" />
+		</javac>
+
+	</target>
+
+<!--Compile the java source files with debug statements-->
+	<target name="compileDebug" depends="clean,createBuildArea,copyFilesToBuildArea">
+        <echo message="using java version:${ant.java.version}" />
+		<javac srcdir="${javaSrcDir}" destdir="${buildDir}" debug="true" debuglevel="lines,vars,source">
+			<classpath refid="project.class.path" />
+		</javac>
+	</target>
+
+<!--Clean up all the created files-->
+	<target name="clean" description="clean up">
+		<delete dir="${buildDir}" />
+	</target>
+<!--Jar the class files-->
+   <target name="createJar" depends="cleanJar,compile">
+      <jar
+         jarfile="${deployDir}/${ant.project.name}.jar"
+         update="no"
+         basedir="${buildDir}" >
+         <include name="META-INF/**" />
+         <include name="**/*.class" />
+   		<exclude name="**/*.java" />
+      </jar>
+   </target>
+<!--Jar the debug enabled class files -->
+   <target name="createJarDebug" depends="cleanJar,compileDebug">
+      <jar
+         jarfile="${deployDir}/${ant.project.name}.jar"
+         update="no"
+         basedir="${buildDir}"
+         manifest="${METAINFDir}/MANIFEST.MF" >
+         <include name="**/*.class" />
+   		<exclude name="**/*.java" />
+      </jar>
+   </target>
+<!--Jar the config files-->
+   <target name="createJarConfig" depends="cleanJarConfig">
+      <jar
+         jarfile="${deployDir}/${ant.project.name}-config.jar"
+         update="no"
+         basedir="${configDir}" >
+         <include name="**/*" />
+      </jar>
+   </target>
+<!--War the files-->
+<target name="createWar" depends="cleanWar,compile">
+		<war destfile="${deployDir}/${ant.project.name}.war" webxml="${WEB-INFDir}//web.xml">
+			<fileset dir="${configDir}">
+				<include name="velocity.properties" />
+				<include name="StripesResources.properties" />
+			</fileset>
+			<fileset dir="${javaSrcDir}">
+				<include name="index.html" />
+			</fileset>
+			<lib dir="${appLibDir}">
+			   <exclude name="**/*ant*.jar" />
+			   <exclude name="${ant.project.name}-config.jar" />
+			   <exclude name="**/*servletapi*.jar" />
+				<include name="**/*.jar" />
+			</lib>
+			<lib dir="${deployDir}">
+			   <include name="${ant.project.name}.jar" />
+			   <exclude name="${ant.project.name}-config.jar" />
+			</lib>
+			<webinf dir="${WEB-INFDir}">
+				<exclude name="web.xml" />
+				<include name="**/*.xml" />
+				<include name="/templates/**.*" />
+			</webinf>
+		</war>
+	</target>
+<!--War the files-->
+<target name="createWarDebug" depends="cleanWar,compileDebug">
+		<war destfile="${deployDir}/${ant.project.name}.war" webxml="${WEB-INFDir}//web.xml">
+			<!--classes dir="${buildDir}">
+				<include name="**/*.class" />
+				<include name="**/*.vm" />
+				<include name="**/*.xml" />
+			</classes-->
+			<fileset dir="${configDir}">
+				<include name="velocity.properties" />
+				<include name="StripesResources.properties" />
+			</fileset>
+			<fileset dir="${javaSrcDir}">
+				<include name="index.html" />
+			</fileset>
+			<lib dir="${appLibDir}">
+			   <exclude name="**/*ant*.jar" />
+			   <exclude name="**/*servletapi*.jar" />
+			   <exclude name="${ant.project.name}-config.jar" />
+				<include name="**/*.jar" />
+			</lib>
+			<lib dir="${deployDir}">
+			   <include name="${ant.project.name}.jar" />
+			   <include name="${ant.project.name}-config.jar" />
+			</lib>
+			<webinf dir="${WEB-INFDir}">
+				<exclude name="web.xml" />
+				<include name="**/*.xml" />
+				<include name="/templates/**.*" />
+			</webinf>
+		</war>
+	</target>
+<!--Clean up the War-->
+   <target name="cleanWar" >
+      <delete>
+         <fileset dir="${deployDir}">
+            <patternset>
+               <include name="${ant.project.name}.war"/>
+            </patternset>
+         </fileset>
+      </delete>
+   </target>
+<!--Clean up the Jar-->
+   <target name="cleanJar" >
+      <delete>
+         <fileset dir="${deployDir}">
+            <patternset>
+               <include name="${ant.project.name}.jar"/>
+            </patternset>
+         </fileset>
+      </delete>
+   </target>
+<!--Clean up the config Jar-->
+   <target name="cleanJarConfig" >
+      <delete>
+         <fileset dir="${deployDir}">
+            <patternset>
+               <include name="${ant.project.name}-config.jar"/>
+            </patternset>
+         </fileset>
+      </delete>
+   </target>
+<!--Build the jar-->
+   <target name="buildit" description="builds all components" depends="compile" >
+      <antcall target="createJar" />
+      <antcall target="createJarConfig" />
+   </target>
+<!--Build the jar with debug enabled classes-->
+   <target name="builditDebug" description="builds all components" depends="compileDebug" >
+      <antcall target="createJarDebug" />
+      <antcall target="createJarConfig" />
+      <antcall target="createWarDebug" />
+   </target>
+
+
+
+<target name="help">
+      <echo>
+usage:
+   ant -help              display ant help screen
+   ant help               display this message
+   ant compile            compile the .java files
+   ant clean              deletes the build directory
+   ant deployJAR          build the deployable jar (default)
+   ant doc                generate javadocs
+   ant docPrivate         generate javadocs -private
+   ant cleandoc           delete the javadocs
+   ant                    default
+
+example:
+   ant
+   ant clean
+      </echo>      
+   </target>
+
+
+</project>
