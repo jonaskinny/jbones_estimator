@@ -1,0 +1,21 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($projectList) && ("$!projectList" != ""))
+   #if ($projectList.size() > 0)
+      #include ("TableOpen.html")
+      #writeProjectListTable($projectList)
+      #include ("TableClose.html")
+   #end
+#end
+#if (($projectMessageList) && ("$!projectMessageList" != ""))
+   #if ($projectMessageList.size() > 0)
+      #include ("TableOpen.html")
+      #writeMessageListTable($projectMessageList)
+      #include ("TableClose.html")
+   #end
+#end
+#parse ("AllAHREF.html")
+#include ("BR.html")
+Create Project
+#parse ("ProjectCreateForm.vm")
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

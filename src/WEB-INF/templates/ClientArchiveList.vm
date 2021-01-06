@@ -1,0 +1,15 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if ($clientArchiveList.size() > 0)
+   #include ("TableOpen.html")
+   #writeClientArchiveListTable($clientArchiveList)
+   #include ("TableClose.html")
+#end
+#if ($clientMessageList.size() > 0)
+   #include ("TableOpen.html")
+   #writeMessageListTable($clientMessageList)
+   #include ("TableClose.html")
+#end
+#parse ("AllAHREF.html")
+#include ("BR.html")
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

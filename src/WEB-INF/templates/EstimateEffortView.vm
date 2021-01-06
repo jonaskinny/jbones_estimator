@@ -1,0 +1,15 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($estimateEffort) && ("$!estimateEffort" != ""))
+   #include ("TableOpen.html")
+   #writeEstimateEffortTable($estimateEffort)
+   #include ("TableClose.html")
+#end
+#if (($estimateEffortMessageList) && ("$!estimateEffortMessageList" != ""))
+   #if ($estimateEffortMessageList.size() > 0)
+      #include ("TableOpen.html")
+      #writeMessageListTable($estimateEffortMessageList)
+      #include ("TableClose.html")
+   #end
+#end
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

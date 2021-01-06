@@ -1,0 +1,12 @@
+<form id="EffortEditForm" name="EffortEditForm" method="post" action=$contextRoot/Effort.action/updateEffort/$effort.id>
+   <label>ID</label>
+      <input type="text" name="effort.identifier" value=$effort.identifier id="identifier" />
+   <label>unit type</label>
+      #writeEffortUnitTypeListSelect($unitTypeList,$effort.unitType.id)
+   <label>complexity</label>
+      #writeEffortComplexityListSelect($complexityList,$effort.complexity.id)
+   <label>phase</label>
+      #writeEffortPhaseListSelect($phaseList,$effort.phase.id)
+   <input type="text" name="effort.effortHours" value=$effort.effortHours id=effortHours />
+   <input type="submit" value="Submit" />
+</form>

@@ -1,0 +1,16 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#include ("TableOpen.html")
+#if (($effort) && ("$!effort" != ""))
+   #include ("TableOpen.html")
+   #writeEffortTable($effort)
+   #include ("TableClose.html")
+#end
+#if (($effortMessageList) && ("$!effortMessageList" != ""))
+   #if ($effortMessageList.size() > 0)
+      #include ("TableOpen.html")
+      #writeMessageListTable($effortMessageList)
+      #include ("TableClose.html")
+   #end
+#end
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

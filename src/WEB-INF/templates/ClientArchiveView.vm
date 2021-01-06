@@ -1,0 +1,9 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($client) && ("$!client" != ""))
+   #include ("TableOpen.html")
+   #writeClientArchiveTable($client)
+   #include ("TableClose.html")
+#end
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")
+

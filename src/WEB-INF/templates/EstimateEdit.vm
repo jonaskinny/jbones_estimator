@@ -1,0 +1,8 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($estimate) && ("$!estimate" != ""))
+Edit Estimate $estimate.identifier
+   #parse ("EstimateEditForm.vm")
+   #parse ("EstimateEffortCreateForm.vm")
+#end
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

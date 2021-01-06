@@ -1,0 +1,15 @@
+<form id="EffortCreateForm" name="EffortCreateForm" method="post" action=$contextRoot/Effort.action/createEffort>
+  <label>ID</label>
+    <input type="text" name="effort.identifier" id="identifier" />
+  <label>unit type</label>
+   #writeEffortUnitTypeListSelect($unitTypeList,$effort.unitType.id)
+  <label>complexity</label>
+   #writeEffortComplexityListSelect($complexityList,$effort.complexity.id)
+  <label>phase</label>
+   #writeEffortPhaseListSelect($phaseList,$effort.phase.id)
+  <label>name</label>
+    <input type="text" name="effort.name" id="name" />
+  <label>effort hours</label>
+    <input type="text" name="effort.effortHours" id="effortHours" />
+  <input type="submit" value="Submit" />
+</form>

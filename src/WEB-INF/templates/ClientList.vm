@@ -1,0 +1,21 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($clientList) && ("$!clientList" != ""))
+   #if ($clientList.size() > 0)
+      #include ("TableOpen.html")
+      #writeClientListTable($clientList)
+      #include ("TableClose.html")
+   #end
+#end
+#if (($clientMessageList) && ("$!clientMessageList" != ""))
+   #if ($clientMessageList.size() > 0)
+      #include ("TableOpen.html")
+      #writeMessageListTable($clientMessageList)
+      #include ("TableClose.html")
+   #end
+#end
+#parse ("AllAHREF.html")
+#include ("BR.html")
+Create Client
+#parse ("ClientCreateForm.vm")
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

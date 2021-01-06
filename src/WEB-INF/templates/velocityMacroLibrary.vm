@@ -1,0 +1,440 @@
+#macro (writeProjectListTable $projectList)
+   #set ($rowCount = 1)
+   #foreach($project in $projectList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Project.action/viewProject/$project.id">$project.identifier</td>
+      <td bgcolor="$bgcolor">$project.projectType.identifier</td>
+      <td bgcolor="$bgcolor">$project.description</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Project.action/editProject/$project.id">edit</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Project.action/archiveProject/$project.id">archive</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeEstimateListTable $estimateList)
+   #set ($rowCount = 1)
+   #foreach($estimate in $estimateList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Estimate.action/viewEstimateDetail/$estimate.id">$estimate.identifier</td>
+      <td bgcolor="$bgcolor">$estimate.client.identifier</td>
+      <td bgcolor="$bgcolor">$estimate.project.identifier</td>
+      <td bgcolor="$bgcolor">$estimate.estimator.identifier</td>
+      <td bgcolor="$bgcolor">$estimate.phase.identifier</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Estimate.action/editEstimate/$estimate.id">edit</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Estimate.action/archiveEstimate/$estimate.id">archive</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeProjectArchiveListTable $projectList)
+   #set ($rowCount = 1)
+   #foreach($project in $projectList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Project.action/viewProjectArchive/$project.Id/$project.archiveId">$project.identifier</td>
+      <td bgcolor="$bgcolor">$project.projectType.identifier</td>
+      <td bgcolor="$bgcolor">$project.description</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Project.action/unarchiveProject/$project.Id/$project.archiveId">un-archive</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeClientListTable $clientList)
+   #set ($rowCount = 1)
+   #foreach($client in $clientList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Client.action/viewClient/$client.id">$client.identifier</td>
+      <td bgcolor="$bgcolor">$client.name</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Client.action/editClient/$client.id">edit</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Client.action/archiveClient/$client.id">archive</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeClientArchiveListTable $clientList)
+   #set ($rowCount = 1)
+   #foreach($client in $clientList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Client.action/viewClientArchive/$client.Id/$client.archiveId">$client.identifier</td>
+      <td bgcolor="$bgcolor">$client.name</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Client.action/unarchiveClient/$client.Id/$client.archiveId">un-archive</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeEstimateArchiveListTable $estimateArchiveList)
+   #set ($rowCount = 1)
+   #foreach($estimate in $estimateArchiveList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Estimate.action/viewEstimateArchive/$estimate.Id/$estimate.archiveId">$estimate.identifier</td>
+      <td bgcolor="$bgcolor">$estimate.client.identifier</td>
+      <td bgcolor="$bgcolor">$estimate.project.identifier</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Estimate.action/unarchiveEstimate/$estimate.Id/$estimate.archiveId">un-archive</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeEffortArchiveListTable $effortArchiveList)
+   #set ($rowCount = 1)
+   #foreach($effort in $effortArchiveList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Effort.action/viewEffortArchive/$effort.id/$effort.archiveId">$effort.identifier</td>
+      <td bgcolor="$bgcolor">$effort.unitType.identifier</td>
+      <td bgcolor="$bgcolor">$effort.complexity.identifier</td>
+      <td bgcolor="$bgcolor">$effort.phase.identifier</td>
+      <td bgcolor="$bgcolor">$effort.effortHours</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Effort.action/unarchiveEffort/$effort.Id/$effort.archiveId">un-archive</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeEffortTable $effort)
+      #set ($bgcolor = "#999900")
+      <tr>
+      <td bgcolor="$bgcolor">$effort.identifier</td>
+      <td bgcolor="$bgcolor">$effort.unitType.identifier</td>
+      <td bgcolor="$bgcolor">$effort.complexity.identifier</td>
+      <td bgcolor="$bgcolor">$effort.phase.identifier</td>
+      <td bgcolor="$bgcolor">$effort.effortHours</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Effort.action/editEffort/$effort.id">edit</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Effort.action/archiveEffort/$effort.id">archive</td>
+      </tr>
+#end
+
+#macro (writeEstimateEffortTable $estimateEffort)
+      #set ($bgcolor = "#999900")
+      <tr>
+      <td bgcolor="$bgcolor">$estimateEffort.identifier</td>
+      <td bgcolor="$bgcolor">$estimateEffort.estimate.identifier</td>
+      <td bgcolor="$bgcolor">$estimateEffort.effort.identifier</td>
+      <td bgcolor="$bgcolor">$estimateEffort.effort.complexity.identifier</td>
+      <td bgcolor="$bgcolor">$estimateEffort.effort.phase.identifier</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/EstimateEffort.action/deleteEstimateEffort/$estimateEffort.id/$estimateEffort.estimate.id">delete</td>
+      </tr>
+#end
+
+#macro (writeProjectTable $project)
+      #set ($bgcolor = "#999900")
+      <tr>
+      <td bgcolor="$bgcolor">$project.identifier</td>
+      <td bgcolor="$bgcolor">$project.projectType.identifier</td>
+      <td bgcolor="$bgcolor">$project.description</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Project.action/editProject/$project.id">edit</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Project.action/archiveProject/$project.id">archive</td>
+      </tr>
+#end
+
+#macro (writeClientTable $client)
+      #set ($bgcolor = "#999900")
+      <tr>
+      <td bgcolor="$bgcolor">$client.identifier</td>
+      <td bgcolor="$bgcolor">$client.name</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Client.action/editClient/$client.id">edit</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Client.action/archiveClient/$client.id">archive</td>
+      </tr>
+#end
+
+#macro (writeClientArchiveTable $client)
+      #set ($bgcolor = "#999900")
+      <tr>
+      <td bgcolor="$bgcolor">$client.identifier</td>
+      <td bgcolor="$bgcolor">$client.name</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Client.action/unarchiveClient/$client.Id/$client.archiveId">un-archive</td>
+      </tr>
+#end
+
+#macro (writeEstimateTable $estimate)
+      #set ($bgcolor = "#999900")
+      <tr>
+      <td bgcolor="$bgcolor">$estimate.identifier</td>
+      <td bgcolor="$bgcolor">$estimate.client.identifier</td>
+      <td bgcolor="$bgcolor">$estimate.project.identifier</td>
+      <td bgcolor="$bgcolor">$estimate.estimator.identifier</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Estimate.action/editEstimate/$estimate.id">edit</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Estimate.action/archiveEstimate/$estimate.id">archive</td>
+      </tr>
+#end
+
+#macro (writeUserListTable $userList)
+   #set ($rowCount = 1)
+   #foreach($user in $userList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor">$user.id</td>
+      <td bgcolor="$bgcolor">$user.username</td>
+      <td bgcolor="$bgcolor">$user.lastname</td>
+      <td bgcolor="$bgcolor">$user.firstname</td>
+      <td bgcolor="$bgcolor">$user.email</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/User.action/deleteUser/$user.id">delete</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeEffortListTable $effortList)
+   #set ($rowCount = 1)
+   #foreach($effort in $effortList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Effort.action/viewEffort/$effort.id">$effort.identifier</td>
+      <td bgcolor="$bgcolor">$effort.unitType.identifier</td>
+      <td bgcolor="$bgcolor">$effort.complexity.identifier</td>
+      <td bgcolor="$bgcolor">$effort.phase.identifier</td>
+      <td bgcolor="$bgcolor">$effort.effortHours</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Effort.action/editEffort/$effort.id">edit</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/Effort.action/archiveEffort/$effort.id">archive</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+## select an Effort for later use
+#macro (writeEffortListTableSelect $effortList)
+   #set ($rowCount = 1)
+   #foreach($effort in $effortList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/EstimateEffort.action/selectEffort/$effort.id">$effort.identifier</td>
+      <td bgcolor="$bgcolor">$effort.unitType.identifier</td>
+      <td bgcolor="$bgcolor">$effort.complexity.identifier</td>
+      <td bgcolor="$bgcolor">$effort.phase.identifier</td>
+      <td bgcolor="$bgcolor">$effort.effortHours</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeEstimateEffortListTable $estimateEffortList)
+   #set ($rowCount = 1)
+   #foreach($estimateEffort in $estimateEffortList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/EstimateEffort.action/viewEstimateEffort/$estimateEffort.id">$estimateEffort.id</td>
+      <td bgcolor="$bgcolor">$estimateEffort.estimate.identifier</td>
+      <td bgcolor="$bgcolor">$estimateEffort.effort.identifier</td>
+      <td bgcolor="$bgcolor">$estimateEffort.effort.complexity.identifier</td>
+      <td bgcolor="$bgcolor">$estimateEffort.effort.phase.identifier</td>
+      <td bgcolor="$bgcolor">$estimateEffort.effort.effortHours</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/EstimateEffort.action/deleteEstimateEffort/$estimateEffort.id/$estimateEffort.estimate.id">delete</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeEstimateEffortCreateListTable $effortList $estimateId)
+   #set ($rowCount = 1)
+   #foreach($effort in $effortList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#999900")
+      #else
+         #set ($bgcolor = "#99CC00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor">$effort.identifier</td>
+      <td bgcolor="$bgcolor">$effort.unitType.identifier</td>
+      <td bgcolor="$bgcolor">$effort.complexity.identifier</td>
+      <td bgcolor="$bgcolor">$effort.phase.identifier</td>
+      <td bgcolor="$bgcolor">$effort.effortHours</td>
+      <td bgcolor="$bgcolor"><a href="$contextRoot/EstimateEffort.action/createEstimateEffort/0/$estimateId/$effort.id">add to estimate</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeUserMessageListTable $userMessageList)
+   #set ($rowCount = 1)
+   #foreach($message in $userMessageList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#FFCC00")
+      #else
+         #set ($bgcolor = "#FFFF00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor">$message</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeMessageListTable $messageList)
+   #set ($rowCount = 1)
+   #foreach($message in $messageList)
+      #if ($rowCount % 2 == 0)
+         #set ($bgcolor = "#FFCC00")
+      #else
+         #set ($bgcolor = "#FFFF00")
+      #end
+      <tr>
+      <td bgcolor="$bgcolor">$message</td>
+      </tr>
+      #set ($rowCount = $rowCount + 1)
+   #end
+#end
+
+#macro (writeProjectProjectTypeListSelect $projectTypeList $projectTypeId)
+   <select name=project.projectType.id>
+   #foreach($projectType in $projectTypeList)
+      #if ($projectType.id == $projectTypeId)
+         <option selected value=$projectType.id>$projectType.identifier</option>
+      #else
+         <option value=$projectType.id>$projectType.identifier</option>
+      #end
+   #end
+   </select>
+#end
+
+#macro (writeEffortUnitTypeListSelect $unitTypeList $unitTypeId)
+   <select name=effort.unitType.id>
+   #foreach($unitType in $unitTypeList)
+      #if ($unitType.id == $unitTypeId)
+         <option selected value=$unitType.id>$unitType.identifier</option>
+      #else
+         <option value=$unitType.id>$unitType.identifier</option>
+      #end
+   #end
+   </select>
+#end
+
+#macro (writeEffortComplexityListSelect $complexityList $complexityId)
+   <select name=effort.complexity.id>
+   #foreach($complexity in $complexityList)
+      #if ($complexity.id == $complexityId)
+         <option selected value=$complexity.id>$complexity.identifier</option>
+      #else
+         <option value=$complexity.id>$complexity.identifier</option>
+      #end
+   #end
+   </select>
+#end
+
+#macro (writeEffortPhaseListSelect $phaseList $phaseId)
+   <select name=effort.phase.id>
+   #foreach($phase in $phaseList)
+      #if ($phase.id == $phaseId)
+         <option selected value=$phase.id>$phase.identifier</option>
+      #else
+         <option value=$phase.id>$phase.identifier</option>
+      #end
+   #end
+   </select>
+#end
+
+#macro (writeEstimateClientListSelect $clientList $clientId)
+   <select name=estimate.client.id>
+   #foreach($client in $clientList)
+      #if ($client.id == $clientId)
+         <option selected value=$client.id>$client.identifier</option>
+      #else
+         <option value=$client.id>$client.identifier</option>
+      #end
+   #end
+   </select>
+#end
+
+#macro (writeEstimateProjectListSelect $projectList $projectId)
+   <select name=estimate.project.id>
+   #foreach($project in $projectList)
+      #if ($project.id == $projectId)
+         <option selected value=$project.id>$project.identifier</option>
+      #else
+         <option value=$project.id>$project.identifier</option>
+      #end
+   #end
+   </select>
+#end
+
+#macro (writeEstimateEstimatorListSelect $resourceList $estimatorId)
+   <select name=estimate.estimator.id>
+   #foreach($resource in $resourceList)
+      #if ($resource.id == $estimatorId)
+         <option selected value=$resource.id>$resource.identifier</option>
+      #else
+         <option value=$resource.id>$resource.identifier</option>
+      #end
+   #end
+   </select>
+#end
+
+#macro (writeEstimatePhaseListSelect $phaseList $phaseId)
+   <select name=estimate.phase.id>
+   #foreach($phase in $phaseList)
+      #if ($phase.id == $phaseId)
+         <option selected value=$phase.id>$phase.identifier</option>
+      #else
+         <option value=$phase.id>$phase.identifier</option>
+      #end
+   #end
+   </select>
+#end
+
+#macro (writeEstimateComplexityListSelect $complexityList $complexityId)
+   <select name=estimate.phase.id>
+   #foreach($phase in $phaseList)
+      #if ($phase.id == $phaseId)
+         <option selected value=$phase.id>$phase.identifier</option>
+      #else
+         <option value=$phase.id>$phase.identifier</option>
+      #end
+   #end
+   </select>
+#end
+
+
+

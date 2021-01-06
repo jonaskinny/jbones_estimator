@@ -1,0 +1,23 @@
+<form id="EstimateCreateForm" name="EstimateCreateForm" method="post" action=$contextRoot/Estimate.action/createEstimate>
+  <label>ID</label>
+    <input type="text" name="estimate.identifier" id="identifier" />
+  <label>client</label>
+   #writeEstimateClientListSelect($clientList,$estimate.client.id)
+  <label>project</label>
+   #writeEstimateProjectListSelect($projectList,$estimate.project.id)
+  <label>estimator</label>
+   #writeEstimateEstimatorListSelect($resourceList,$estimate.estimator.id)
+  <label>phase</label>
+   #writeEstimatePhaseListSelect($phaseList,$estimate.phase.id)
+  <label>produced</label>
+    <input type="text" name="estimate.timeProducedMillisEpoch" id="timeProducedMillisEpoch" />
+  <label>raw unit estimate</label>
+    <input type="text" name="estimate.rawUnitEstimate" id="rawUnitEstimate" />
+  <label>adjusted estimate</label>
+    <input type="text" name="estimate.adjustedEstimate" id="adjustedEstimate" />
+  <label>high estimate</label>
+    <input type="text" name="estimate.highEstimate" id="highEstimate" />
+  <label>low estimate</label>
+    <input type="text" name="estimate.lowEstimate" id="lowEstimate" />
+  <input type="submit" value="Submit" />
+</form>

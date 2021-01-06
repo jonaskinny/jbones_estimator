@@ -1,0 +1,7 @@
+<form id="ClientCreateForm" name="ClientCreateForm" method="post" action=$contextRoot/Client.action/createClient>
+  <label>ID</label>
+    <input type="text" name="client.identifier" id="identifier" />
+  <label>name</label>
+    <input type="text" name="client.name" id="name" />
+  <input type="submit" value="Submit" />
+</form>

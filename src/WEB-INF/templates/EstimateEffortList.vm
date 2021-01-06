@@ -1,0 +1,19 @@
+#if (($effortMessageList) && ("$!effortMessageList" != ""))
+   #if ($effortMessageList.size() > 0)
+      #include ("TableOpen.html")
+      #writeMessageListTable($effortMessageList)
+      #include ("TableClose.html")
+   #end
+#end
+Add Effort to Estimate
+#if (($effortList) && ("$!effortList" != "") && ($estimate) && ("$!estimate" != ""))
+   #if ($effortList.size() > 0)
+      #include ("TableOpen.html")
+      #writeEstimateEffortCreateListTable($effortList,$estimate.id)
+      #include ("TableClose.html")
+   #end
+#end
+#include ("BR.html")
+#parse ("AllAHREF.html")
+#include ("BR.html")
+

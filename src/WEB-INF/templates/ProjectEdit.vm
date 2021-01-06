@@ -1,0 +1,7 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($project) && ("$!project" != ""))
+Edit Project $project.identifier
+   #parse ("ProjectEditForm.vm")
+#end
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

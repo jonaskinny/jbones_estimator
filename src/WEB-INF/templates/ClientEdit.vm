@@ -1,0 +1,7 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($client) && ("$!client" != ""))
+Edit Client $client.identifier
+   #parse ("ClientEditForm.vm")
+#end
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

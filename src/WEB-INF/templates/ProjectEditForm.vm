@@ -1,0 +1,9 @@
+<form id="ProjectEditForm" name="ProjectEditForm" method="post" action=$contextRoot/Project.action/updateProject/$project.id>
+   <label>ID</label>
+      <input type="text" name="project.identifier" value=$project.identifier id="identifier" />
+   <label>project type</label>
+      #writeProjectProjectTypeListSelect($projectTypeList,$project.projectType.id)
+   <label>description</label>
+      <input type="text" name="project.description" value=$project.description id="description" />
+   <input type="submit" value="Submit" />
+</form>

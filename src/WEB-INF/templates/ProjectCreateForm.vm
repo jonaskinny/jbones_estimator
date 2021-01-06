@@ -1,0 +1,11 @@
+<form id="ProjectCreateForm" name="ProjectCreateForm" method="post" action=$contextRoot/Project.action/createProject>
+  <label>ID</label>
+    <input type="text" name="project.identifier" id="identifier" />
+  <label>project type</label>
+   #writeProjectProjectTypeListSelect($projectTypeList,$project.projectType.id)
+  <label>name</label>
+    <input type="text" name="project.name" id="name" />
+  <label>description</label>
+    <input type="text" name="project.description" id="description" />
+  <input type="submit" value="Submit" />
+</form>

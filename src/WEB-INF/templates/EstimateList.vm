@@ -1,0 +1,16 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($estimateList) && ("$!estimateList" != ""))
+   #if ($estimateList.size() > 0)
+      #include ("TableOpen.html")
+      #writeEstimateListTable($estimateList)
+      #include ("TableClose.html")
+   #end
+#end
+#if (($estimateMessageList) && ("$!estimateMessageList" != ""))
+   #if ($estimateMessageList.size() > 0)
+      #include ("TableOpen.html")
+      #writeMessageListTable($estimateMessageList)
+      #include ("TableClose.html")
+   #end
+#end
+

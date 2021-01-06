@@ -1,0 +1,21 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($effortList) && ("$!effortList" != ""))
+   #if ($effortList.size() > 0)
+      #include ("TableOpen.html")
+      #writeEffortListTable($effortList)
+      #include ("TableClose.html")
+   #end
+#end
+#if (($effortMessageList) && ("$!effortMessageList" != ""))
+   #if ($effortMessageList.size() > 0)
+      #include ("TableOpen.html")
+      #writeMessageListTable($effortMessageList)
+      #include ("TableClose.html")
+   #end
+#end
+#parse ("AllAHREF.html")
+#include ("BR.html")
+Create Effort
+#parse ("EffortCreateForm.vm")
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

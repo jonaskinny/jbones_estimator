@@ -1,0 +1,7 @@
+<form id="EstimateEffortCreateForm" name="EstimateEffortCreateForm" method="post" action=$contextRoot/EstimateEffort.action/createEstimateEffort>
+   <label>efforts:</label>
+      #include ("TableOpen.html")
+      #writeEstimateEffortCreateListTable ($effortList, $estimate.id)
+      #include ("TableClose.html")
+   <input type="submit" value="Submit" />
+</form>

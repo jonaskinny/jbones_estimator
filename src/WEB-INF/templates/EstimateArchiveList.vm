@@ -1,0 +1,18 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($estimateArchiveList) && ("$!estimateArchiveList" != ""))
+   #if ($estimateArchiveList.size() > 0)
+      #include ("TableOpen.html")
+      #writeEstimateArchiveListTable($estimateArchiveList)
+      #include ("TableClose.html")
+   #end
+#end
+#if (($estimateMessageList) && ("$!estimateMessageList" != ""))
+   #if ($estimateMessageList.size() > 0)
+      #include ("TableOpen.html")
+      #writeMessageListTable($estimateMessageList)
+      #include ("TableClose.html")
+   #end
+#end
+#parse ("AllAHREF.html")
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

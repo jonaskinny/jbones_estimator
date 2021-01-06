@@ -1,0 +1,7 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($effort) && ("$!effort" != ""))
+Edit Effort $effort.identifier
+   #parse ("EffortEditForm.vm")
+#end
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

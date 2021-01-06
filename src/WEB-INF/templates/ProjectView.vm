@@ -1,0 +1,9 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#include ("TableOpen.html")
+#if (($project) && ("$!project" != ""))
+   #include ("TableOpen.html")
+   #writeProjectTable($project)
+   #include ("TableClose.html")
+#end
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")

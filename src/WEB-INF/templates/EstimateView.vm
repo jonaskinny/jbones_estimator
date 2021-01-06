@@ -1,0 +1,22 @@
+#include ("IndexHtmlOpen.html","IndexHeadOpen.html","IndexHeadClose.html","IndexBodyOpen.html")
+#if (($estimate) && ("$!estimate" != ""))
+   #include ("TableOpen.html")
+   #writeEstimateTable($estimate)
+   #include ("TableClose.html")
+#end
+#if (($estimateEffortList) && ("$!estimateEffortList" != ""))
+   #if ($estimateEffortList.size() > 0)
+      #include ("TableOpen.html")
+      #writeEstimateEffortListTable($estimateEffortList)
+      #include ("TableClose.html")
+   #end
+#end
+#if (($estimateMessageList) && ("$!estimateMessageList" != ""))
+   #if ($estimateMessageList.size() > 0)
+      #include ("TableOpen.html")
+      #writeMessageListTable($estimateMessageList)
+      #include ("TableClose.html")
+   #end
+#end
+#include ("IndexBodyClose.html")
+#include ("IndexHtmlClose.html")
